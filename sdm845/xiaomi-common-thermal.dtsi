@@ -1,0 +1,226 @@
+&pm8998_vadc {
+	vph_pwr@83 {
+		label = "vph_pwr";
+		reg = <ADC_VPH_PWR>;
+		qcom,pre-scaling = <1 3>;
+	};
+
+	vcoin@85 {
+		label = "vcoin";
+		reg = <ADC_VCOIN>;
+		qcom,pre-scaling = <1 3>;
+	};
+
+	xo_therm@4c {
+		label = "xo_therm";
+		reg = <ADC_XO_THERM_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+
+	cam_therm0@4d {
+		label = "cam_therm0";
+		reg = <ADC_AMUX_THM1_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+
+	cam_therm1@4e {
+		label = "cam_therm1";
+		reg = <ADC_AMUX_THM2_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pa_therm0@4f {
+		label = "pa_therm0";
+		reg = <ADC_AMUX_THM3_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+
+	pa_therm1@50 {
+		label = "pa_therm1";
+		reg = <ADC_AMUX_THM4_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+
+	quiet_therm@51 {
+		label = "quiet_therm";
+		reg = <ADC_AMUX_THM5_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+		qcom,pre-scaling = <1 1>;
+	};
+};
+
+&pm8998_adc_tm {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	vph_pwr@83 {
+		label = "vph_pwr";
+		reg = <ADC_VPH_PWR>;
+		qcom,pre-scaling = <1 3>;
+	};
+
+	xo_therm@4c {
+		label = "xo_therm";
+		reg = <ADC_XO_THERM_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+
+	cam_therm0@4d {
+		label = "cam_therm0";
+		reg = <ADC_AMUX_THM1_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+
+	cam_therm1@4e {
+		label = "cam_therm1";
+		reg = <ADC_AMUX_THM2_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+
+	pa_therm0@4f {
+		label = "pa_therm0";
+		reg = <ADC_AMUX_THM3_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+
+	pa_therm1@50 {
+		label = "pa_therm1";
+		reg = <ADC_AMUX_THM4_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+
+	quiet_therm@51 {
+		label = "quiet_therm";
+		reg = <ADC_AMUX_THM5_PU2>;
+		qcom,ratiometric;
+		qcom,pre-scaling = <1 1>;
+		qcom,hw-settle-time = <200>;
+	};
+};
+
+&thermal_zones {
+	xo_therm {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_XO_THERM_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	cam_therm0 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_AMUX_THM1_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	cam_therm1 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_AMUX_THM2_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	pa_therm0 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_AMUX_THM3_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	pa_therm1 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_AMUX_THM4_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	quiet_therm {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pm8998_adc_tm ADC_AMUX_THM5_PU2>;
+		thermal-governor = "user_space";
+		wake-capable-sensor;
+
+		trips {
+			active-config0 {
+				temperature = <65000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	pm8005_tz {
+		disable-thermal-zone;
+	};
+
+	pmi8998_tz {
+		disable-thermal-zone;
+	};
+};
