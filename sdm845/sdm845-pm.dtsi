@@ -119,7 +119,7 @@
 					qcom,psci-cpu-mode = <0x4>;
 					qcom,entry-latency-us = <61>;
 					qcom,exit-latency-us = <1061>;
-					qcom,min-residency-us = <1122>;
+					qcom,min-residency-us = <1000>;
 					qcom,is-reset;
 					qcom,use-broadcast-timer;
 				};
