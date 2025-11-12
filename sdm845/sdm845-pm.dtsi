@@ -119,7 +119,7 @@
 					qcom,psci-cpu-mode = <0x4>;
 					qcom,entry-latency-us = <61>;
 					qcom,exit-latency-us = <1061>;
-					qcom,min-residency-us = <1000>;
+					qcom,min-residency-us = <1122>;
 					qcom,is-reset;
 					qcom,use-broadcast-timer;
 				};
@@ -137,5 +137,6 @@
 	qcom,rpmh-master-stats@b221200 {
 		compatible = "qcom,rpmh-master-stats-v1";
 		reg = <0xb221200 0x60>;
+		qcom,use-alt-unit = <3>;
 	};
 };
