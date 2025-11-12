@@ -2124,16 +2124,16 @@
 			qcom,iommu-vmid = <0xA>;	/* VMID_CP_PIXEL */
 			dma-coherent;
 		};
-		qcom,msm_fastrpc_compute_cb10 {
-			compatible = "qcom,msm-fastrpc-compute-cb";
-			label = "cdsprpc-smd";
-			qcom,secure-context-bank;
-			iommus = <&apps_smmu 0x140A 0x30>;
-			qcom,iommu-dma-addr-pool = <0x60000000 0x78000000>;
-			qcom,iommu-faults = "stall-disable", "HUPCF";
-			qcom,iommu-vmid = <0xA>;	/* VMID_CP_PIXEL */
-			dma-coherent;
-		};
+		// qcom,msm_fastrpc_compute_cb10 {
+		// 	compatible = "qcom,msm-fastrpc-compute-cb";
+		// 	label = "cdsprpc-smd";
+		// 	qcom,secure-context-bank;
+		// 	iommus = <&apps_smmu 0x140A 0x30>;
+		// 	qcom,iommu-dma-addr-pool = <0x60000000 0x78000000>;
+		// 	qcom,iommu-faults = "stall-disable", "HUPCF";
+		// 	qcom,iommu-vmid = <0xA>;	/* VMID_CP_PIXEL */
+		// 	dma-coherent;
+		// };
 		qcom,msm_fastrpc_compute_cb11 {
 			compatible = "qcom,msm-fastrpc-compute-cb";
 			label = "adsprpc-smd";
@@ -3796,7 +3796,7 @@
 #include "sdm845-camera.dtsi"
 #include "sdm845-bus.dtsi"
 #include "sdm845-vidc.dtsi"
-#include "sdm845-pm.dtsi"
+// #include "sdm845-pm.dtsi"
 #include "sdm845-pinctrl.dtsi"
 #include "sdm845-pcie.dtsi"
 #include "sdm845-audio.dtsi"
