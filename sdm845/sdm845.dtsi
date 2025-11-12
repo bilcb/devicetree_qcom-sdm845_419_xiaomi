@@ -913,7 +913,6 @@
 
 	intc: interrupt-controller@17a00000 {
 		compatible = "arm,gic-v3";
-		ranges;
 		#interrupt-cells = <3>;
 		interrupt-controller;
 		#redistributor-regions = <1>;
