@@ -55,7 +55,7 @@
 				};
 			};
 
-			spkr_2_wcd_en_active: spkr_2_wcd_en_active {
+			spkr_2_wcd_en_active: spkr_2_sd_n_active {
 				mux {
 					pins = "gpio3";
 				};
@@ -66,7 +66,7 @@
 				};
 			};
 
-			spkr_2_wcd_en_sleep: spkr_2_wcd_en_sleep {
+			spkr_2_wcd_en_sleep: spkr_2_sd_n_sleep {
 				mux {
 					pins = "gpio3";
 				};
@@ -122,14 +122,14 @@
 			};
 		};
 
-		wsa_spkr_wcd_sd1: msm_cdc_pinctrl_1 {
+		wsa_spkr_wcd_sd1: msm_cdc_pinctrll {
 			  compatible = "qcom,msm-cdc-pinctrl";
 			  pinctrl-names = "aud_active", "aud_sleep";
 			  pinctrl-0 = <&spkr_1_wcd_en_active>;
 			  pinctrl-1 = <&spkr_1_wcd_en_sleep>;
 		};
 
-		wsa_spkr_wcd_sd2: msm_cdc_pinctrl_2 {
+		wsa_spkr_wcd_sd2: msm_cdc_pinctrlr {
 			  compatible = "qcom,msm-cdc-pinctrl";
 			  pinctrl-names = "aud_active", "aud_sleep";
 			  pinctrl-0 = <&spkr_2_wcd_en_active>;

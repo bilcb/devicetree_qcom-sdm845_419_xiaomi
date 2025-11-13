@@ -216,10 +216,10 @@
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,active-only;
 		qcom,msm-bus,vectors-KBps =
-			<22 512 0  192000>,
-			<22 512 0 1800000>,
-			<22 512 0 3440000>,
-			<22 512 0 4300000>;
+			<22 512 0 1200000>,
+			<22 512 0 1920000>,
+			<22 512 0 4150000>,
+			<22 512 0 6400000>;
 
 		qcom,sde-sspp-vig-blocks {
 			qcom,sde-vig-csc-off = <0x1a00>;
@@ -471,15 +471,14 @@
 		qcom,null-insertion-enabled;
 
 		qcom,msm-bus,name = "mdss_dsi0";
-		qcom,msm-bus,num-cases = <5>;
+		qcom,msm-bus,num-cases = <4>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,active-only;
 		qcom,msm-bus,vectors-KBps =
-			<22 512 0  192000>,
-			<22 512 0 1800000>,
-			<22 512 0 2750000>,
-			<22 512 0 3285800>,
-			<22 512 0 3580000>;
+			<22 512 0 1200000>,
+			<22 512 0 1920000>,
+			<22 512 0 4150000>,
+			<22 512 0 6400000>;
 
 		qcom,ctrl-supply-entries {
 			#address-cells = <1>;
@@ -553,15 +552,14 @@
 		qcom,null-insertion-enabled;
 
 		qcom,msm-bus,name = "mdss_dsi1";
-		qcom,msm-bus,num-cases = <5>;
+		qcom,msm-bus,num-cases = <4>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,active-only;
 		qcom,msm-bus,vectors-KBps =
-			<22 512 0  192000>,
-			<22 512 0 1800000>,
-			<22 512 0 2750000>,
-			<22 512 0 3285800>,
-			<22 512 0 3580000>;
+			<22 512 0 1200000>,
+			<22 512 0 1920000>,
+			<22 512 0 4150000>,
+			<22 512 0 6400000>;
 
 		qcom,ctrl-supply-entries {
 			#address-cells = <1>;
@@ -752,10 +750,10 @@
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,active-only;
 		qcom,msm-bus,vectors-KBps =
-			<22 512 0 1620000>,
-			<22 512 0 2700000>,
-			<22 512 0 5400000>,
-			<22 512 0 8100000>;
+			<22 512 0 1200000>,
+			<22 512 0 1920000>,
+			<22 512 0 4150000>,
+			<22 512 0 6400000>;
 
 		qcom,ctrl-supply-entries {
 			#address-cells = <1>;
