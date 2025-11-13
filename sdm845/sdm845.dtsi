@@ -10,7 +10,6 @@
 #include <dt-bindings/clock/qcom,videocc-sdm845.h>
 #include <dt-bindings/clock/qcom,cpucc-sdm845.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
-#include <dt-bindings/clock/qcom,rpmcc.h>
 #include <dt-bindings/clock/qcom,aop-qmp.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -18,7 +17,6 @@
 #include <dt-bindings/spmi/spmi.h>
 #include <dt-bindings/msm/msm-bus-ids.h>
 #include <dt-bindings/soc/qcom,dcc_v2.h>
-#include <dt-bindings/gpio/gpio.h>
 
 #define MHZ_TO_MBPS(mhz, w) (((mhz) * 1000000ULL * (w)) / (1024 * 1024))
 #define BW_OPP_ENTRY(mhz, w) opp-mhz {opp-hz = /bits/ 64 <MHZ_TO_MBPS(mhz, w)>;}
@@ -1344,16 +1342,6 @@
 		compatible = "qcom,gcc-sdm845", "syscon";
 		reg = <0x100000 0x1f0000>;
 		reg-names = "cc_base";
-		clocks = <&clock_rpmh RPMH_CXO_CLK>,
-				 <&clock_rpmh RPMH_CXO_CLK_A>,
-				 <&sleep_clk>,
-				 <&pcie0>,
-				 <&pcie1>;
-		clock-names = "bi_tcxo",
-					  "bi_tcxo_ao",
-					  "sleep_clk",
-					  "pcie_0_pipe_clk",
-					  "pcie_1_pipe_clk";
 		vdd_cx-supply = <&pm8998_s9_level>;
 		vdd_cx_ao-supply = <&pm8998_s9_level_ao>;
 		#clock-cells = <1>;
@@ -1365,9 +1353,6 @@
 		reg = <0xab00000 0x10000>;
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
-		clock-names = "cfg_ahb_clk", "bi_tcxo";
-		clocks = <&clock_gcc GCC_VIDEO_AHB_CLK>,
-				<&clock_rpmh RPMH_CXO_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -1378,10 +1363,6 @@
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
 		vdd_mx-supply = <&pm8998_s6_level>;
-		clock-names = "cfg_ahb_clk", "bi_tcxo";
-		clocks = <&clock_gcc GCC_CAMERA_AHB_CLK>,
-				<&clock_rpmh RPMH_CXO_CLK>;
-
 		qcom,cam_cc_csi0phytimer_clk_src-opp-handle = <&cam_csiphy0>;
 		qcom,cam_cc_csi1phytimer_clk_src-opp-handle = <&cam_csiphy1>;
 		qcom,cam_cc_csi2phytimer_clk_src-opp-handle = <&cam_csiphy2>;
@@ -1405,9 +1386,6 @@
 		reg = <0xaf00000 0x10000>;
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
-		clock-names = "cfg_ahb_clk", "bi_tcxo";
-		clocks = <&clock_gcc GCC_DISP_AHB_CLK>,
-				<&clock_rpmh RPMH_CXO_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -1419,12 +1397,6 @@
 		vdd_cx-supply = <&pm8998_s9_level>;
 		vdd_mx-supply = <&pm8998_s6_level>;
 		qcom,gpu_cc_gmu_clk_src-opp-handle = <&gmu>;
-		clocks = <&clock_rpmh RPMH_CXO_CLK>,
-				 <&clock_gcc GCC_GPU_GPLL0_CLK_SRC>,
-				 <&clock_gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-		clock-names = "bi_tcxo",
-					  "gcc_gpu_gpll0_clk_src",
-					  "gcc_gpu_gpll0_div_clk_src";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -1441,12 +1413,6 @@
 		reg-names = "cc_base";
 		vdd_gfx-supply = <&pm8005_s1_level>;
 		qcom,gpu_cc_gx_gfx3d_clk_src-opp-handle = <&msm_gpu>;
-		clocks = <&clock_rpmh RPMH_CXO_CLK>,
-				 <&clock_gpucc GCC_GPU_GPLL0_CLK_SRC>,
-				 <&clock_gpucc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-		clock-names = "bi_tcxo",
-					  "gcc_gpu_gpll0_clk_src",
-					  "gcc_gpu_gpll0_div_clk_src";
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -1681,9 +1647,8 @@
 
 		qcom,devfreq,freq-table = <50000000 201500000>;
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
-			<&clock_gcc GCC_SDCC2_APPS_CLK>,
-			<&clock_rpmh RPMH_CXO_CLK>;
-		clock-names = "iface_clk", "core_clk", "xo";
+			<&clock_gcc GCC_SDCC2_APPS_CLK>;
+		clock-names = "iface_clk", "core_clk";
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
@@ -1948,8 +1913,6 @@
 		qcom,firmware-name = "spss";
 		memory-region = <&pil_spss_mem>;
 		qcom,spss-scsr-bits = <24 25>;
-		/* use extra size for IAR memory */
-		qcom,extra-size = <4096>;
 
 		mboxes = <&qmp_aop 0>;
 		mbox-names = "spss-pil";
@@ -2041,10 +2004,7 @@
 
 	qcom,msm_fastrpc {
 		compatible = "qcom,msm-fastrpc-compute";
-		qcom,adsp-remoteheap-vmid = <22 37>;
 		qcom,rpc-latency-us = <611>;
-		qcom,fastrpc-adsp-audio-pdr;
-		qcom,fastrpc-adsp-sensors-pdr;
 
 		qcom,msm_fastrpc_compute_cb1 {
 			compatible = "qcom,msm-fastrpc-compute-cb";
@@ -2464,8 +2424,6 @@
 		clock_rpmh: qcom,rpmhclk {
 			compatible = "qcom,sdm845-rpmh-clk";
 			#clock-cells = <1>;
-			clock-names = "xo";
-			clocks = <&xo_board>;
 		};
 	};
 
@@ -2768,15 +2726,6 @@
 
 		/* predefined channels, remote side is server */
 		qcom,spcom-ch-names = "sp_kernel", "sp_ssr";
-		/* rmb_err shared register physical address */
-		qcom,spcom-rmb-err-reg-addr = <0x188103c>;
-		/* sp2soc rmb shared register physical address and bmsk */
-		qcom,spcom-sp2soc-rmb-reg-addr = <0x01881020>;
-		qcom,spcom-sp2soc-rmb-initdone-bit = <24>;
-		qcom,spcom-sp2soc-rmb-pbldone-bit = <25>;
-		/* soc2sp rmb shared register physical address */
-		qcom,spcom-soc2sp-rmb-reg-addr = <0x01881030>;
-		qcom,spcom-soc2sp-rmb-sp-ssr-bit = <0>;
 		status = "ok";
 	};
 
@@ -2792,8 +2741,6 @@
 		qcom,spss-prod-firmware-name = "spss1p";  /* 8 chars max */
 		qcom,spss-debug-reg-addr = <0x01886020>;
 		qcom,no-cmac-and-iar-feature-support;
-		pil-mem = <&pil_spss_mem>;
-		qcom,pil-size = <0x0F0000>; // padding to 960 KB
 		status = "ok";
 	};
 
@@ -2899,7 +2846,6 @@
 			 <&clock_gcc GCC_CE1_AXI_CLK>;
 		qcom,ce-opp-freq = <171430000>;
 		qcom,qsee-reentrancy-support = <2>;
-		vdd-hba-supply = <&ufs_phy_gdsc>;
 	};
 
 	demux {
@@ -3078,8 +3024,6 @@
 		qcom,ipa-hw-ver = <13>; /* IPA core version = IPAv3.5.1 */
 		qcom,ipa-hw-mode = <0>;
 		qcom,platform-type = <1>; /* MSM platform */
-		clocks = <&clock_rpmh RPM_SMD_IPA_CLK>;
-		clock-names = "core_clk";
 		qcom,ee = <0>;
 		qcom,use-ipa-tethering-bridge;
 		qcom,modem-cfg-emb-pipe-flt;
@@ -3419,8 +3363,6 @@
 			  <0xb0000000 0x10000>;
 		reg-names = "membase", "smmu_iova_ipa";
 		iommus = <&apps_smmu 0x0040 0x1>;
-		clock-names = "cxo_ref_clk_pin";
-		clocks = <&clock_rpmh RPMH_RF_CLK2>;
 		interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
 				 <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
 				 <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
@@ -3438,7 +3380,6 @@
 		qcom,iommu-faults = "stall-disable", "non-fatal";
 		qcom,hyp_enabled;
 		qcom,wlan-msa-memory = <0x100000>;
-		qcom,wlan-msa-fixed-region = <&wlan_fw_region>;
 
 		vdd-cx-mx-supply = <&pm8998_l5>;
 		vdd-1.8-xo-supply = <&pm8998_l7>;
