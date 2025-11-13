@@ -1345,8 +1345,6 @@
 		reg = <0xab00000 0x10000>;
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
-		clock-names = "cfg_ahb_clk";
-		clocks = <&clock_gcc GCC_VIDEO_AHB_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -1357,8 +1355,6 @@
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
 		vdd_mx-supply = <&pm8998_s6_level>;
-		clock-names = "cfg_ahb_clk";
-		clocks = <&clock_gcc GCC_VIDEO_AHB_CLK>;
 
 		qcom,cam_cc_csi0phytimer_clk_src-opp-handle = <&cam_csiphy0>;
 		qcom,cam_cc_csi1phytimer_clk_src-opp-handle = <&cam_csiphy1>;
@@ -1383,8 +1379,6 @@
 		reg = <0xaf00000 0x10000>;
 		reg-names = "cc_base";
 		vdd_cx-supply = <&pm8998_s9_level>;
-		clock-names = "cfg_ahb_clk";
-		clocks = <&clock_gcc GCC_VIDEO_AHB_CLK>;
 		#clock-cells = <1>;
 		#reset-cells = <1>;
 	};
@@ -3359,8 +3353,6 @@
 			  <0xb0000000 0x10000>;
 		reg-names = "membase", "smmu_iova_ipa";
 		iommus = <&apps_smmu 0x0040 0x1>;
-		clock-names = "cxo_ref_clk_pin";
-		clocks = <&clock_rpmh RPMH_RF_CLK2>;
 		interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
 				 <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
 				 <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
