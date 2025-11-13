@@ -1275,18 +1275,6 @@
 		};
 	};
 
-	bus_proxy_client: qcom,bus_proxy_client {
-		compatible = "qcom,bus-proxy-client";
-		qcom,msm-bus,name = "bus-proxy-client";
-		qcom,msm-bus,num-cases = <2>;
-		qcom,msm-bus,num-paths = <2>;
-		qcom,msm-bus,vectors-KBps =
-			<22 512 0 0>, <23 512 0 0>,
-			<22 512 1500000 1500000>, <23 512 1500000 1500000>;
-		qcom,msm-bus,active-only;
-		status = "ok";
-	};
-
 	keepalive_opp_table: keepalive-opp-table {
 		compatible = "operating-points-v2";
 		opp-1 {
@@ -1660,9 +1648,6 @@
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
 		qcom,pm-qos-legacy-latency-us = <70 70>, <70 70>;
 
-		resets = <&clock_gcc GCC_SDCC2_BCR>;
-		reset-names = "core_reset";
-
 		status = "disabled";
 	};
 
@@ -1853,6 +1838,7 @@
 	};
 
 	slim_qca: slim@17240000 {
+		status = "ok";
 		cell-index = <3>;
 		compatible = "qcom,slim-ngd";
 		reg = <0x17240000 0x2c000>,
@@ -1865,7 +1851,6 @@
 		iommus = <&apps_smmu 0x1813 0x0>;
 		qcom,iommu-dma-addr-pool = <0x40000000 0xc0000000>;
 		qcom,iommu-dma = "atomic";
-		status = "ok";
 
 		/* Slimbus Slave DT for WCN3990 */
 		btfmslim_codec: wcn3990 {
@@ -1926,7 +1911,6 @@
 		compatible = "qcom,msm-watchdog";
 		reg = <0x17980000 0x1000>;
 		reg-names = "wdt-base";
-		clocks = <&sleep_clk>;
 		interrupts = <0 0 IRQ_TYPE_EDGE_RISING>,
 				 <0 1 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,bark-time = <11000>;
