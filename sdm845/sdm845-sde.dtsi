@@ -33,6 +33,7 @@
 		gdsc-supply = <&pm8998_s9_level>;
 
 		/* interrupt config */
+		interrupt-parent = <&intc>;
 		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-controller;
 		#interrupt-cells = <1>;

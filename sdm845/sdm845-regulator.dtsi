@@ -387,6 +387,7 @@
 		reg = <0xff1000 0x60>;
 		regulator-name = "refgen";
 		regulator-enable-ramp-delay = <5>;
+		status = "disabled";
 		proxy-supply = <&refgen>;
 		qcom,proxy-consumer-enable;
 	};

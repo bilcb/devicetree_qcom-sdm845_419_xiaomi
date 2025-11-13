@@ -24,7 +24,6 @@
 			interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_RISING>;
 			label = "pm8005_tz";
 			#thermal-sensor-cells = <0>;
-			qcom,temperature-threshold-set = <1>;
 		};
 
 		pm8005_gpios: pinctrl@c000 {

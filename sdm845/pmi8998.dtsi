@@ -37,7 +37,6 @@
 			io-channels = <&pmi8998_rradc 7>;
 			io-channel-names = "thermal";
 			#thermal-sensor-cells = <0>;
-			qcom,temperature-threshold-set = <1>;
 		};
 
 		pmi8998_gpios: pinctrl@c000 {
@@ -278,7 +277,6 @@
 			qcom,fg-esr-timer-asleep = <256 256>;
 			qcom,fg-esr-timer-charging = <0 96>;
 			qcom,cycle-counter-en;
-			qcom,hold-soc-while-full;
 			qcom,fg-auto-recharge-soc;
 			qcom,fg-recharge-soc-thr = <98>;
 			status = "okay";
